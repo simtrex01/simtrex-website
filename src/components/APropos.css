@@ -1,0 +1,426 @@
+.apropos__contenu {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: start;
+}
+
+/* Ligne chronologique fondation / incorporation */
+.apropos__historique {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.apropos__historique-annee {
+  background: var(--couleur-accent);
+  color: var(--couleur-blanc);
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 5px 12px;
+  border-radius: 100px;
+}
+
+.apropos__historique-separateur {
+  color: var(--couleur-gris-moyen);
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+/* Colonne texte */
+.apropos__intro {
+  font-size: 1.05rem;
+  color: var(--couleur-texte);
+  line-height: 1.7;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+.apropos__para {
+  font-size: 0.92rem;
+  color: var(--couleur-texte-clair);
+  line-height: 1.75;
+  margin-bottom: 16px;
+}
+
+/* ── Origine du nom ────────────────────────────────────────── */
+/* Biographie du fondateur */
+.apropos__bio {
+  display: flex;
+  gap: 22px;
+  align-items: stretch;
+  margin: 28px 0 4px;
+  background: var(--couleur-blanc);
+  border: 1px solid #e8e8e8;
+  border-left: 4px solid var(--couleur-accent);
+  border-radius: var(--rayon);
+  padding: 22px;
+  box-shadow: var(--ombre);
+}
+
+.apropos__bio-photo {
+  flex-shrink: 0;
+  width: 190px;
+}
+
+.apropos__bio-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 75% center;
+  border-radius: var(--rayon);
+  display: block;
+}
+
+.apropos__bio-titre {
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: var(--couleur-primaire);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 12px;
+}
+
+.apropos__bio-texte p {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--couleur-texte);
+  margin-bottom: 12px;
+}
+
+.apropos__bio-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin: 16px 0 14px;
+  padding: 14px 0;
+  border-top: 1px solid #ececec;
+  border-bottom: 1px solid #ececec;
+}
+
+.apropos__bio-stat {
+  display: flex;
+  flex-direction: column;
+}
+
+.apropos__bio-stat strong {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--couleur-accent);
+  line-height: 1.1;
+}
+
+.apropos__bio-stat span {
+  font-size: 0.78rem;
+  color: var(--couleur-texte-clair);
+}
+
+.apropos__bio-signature {
+  font-style: italic;
+  font-weight: 700;
+  color: var(--couleur-primaire) !important;
+  margin-bottom: 0 !important;
+}
+
+@media (max-width: 640px) {
+  .apropos__bio {
+    flex-direction: column;
+  }
+  .apropos__bio-photo {
+    width: 100%;
+    max-width: 280px;
+    margin: 0 auto;
+  }
+}
+
+.apropos__nom-origine {
+  margin: 28px 0 4px;
+  background: var(--couleur-blanc);
+  border: 1px solid #e8e8e8;
+  border-left: 4px solid var(--couleur-accent);
+  border-radius: var(--rayon);
+  padding: 24px 24px 20px;
+  box-shadow: var(--ombre);
+}
+
+.apropos__nom-origine-entete {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.apropos__nom-origine-icone {
+  font-size: 1.15rem;
+  flex-shrink: 0;
+}
+
+.apropos__nom-origine-titre {
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: var(--couleur-primaire);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.apropos__nom-origine-texte {
+  font-size: 0.875rem;
+  color: var(--couleur-texte-clair);
+  line-height: 1.7;
+  margin-bottom: 18px;
+}
+
+.apropos__nom-origine-texte strong {
+  color: var(--couleur-primaire);
+  font-weight: 700;
+}
+
+.apropos__nom-origine-texte em {
+  font-style: italic;
+  color: var(--couleur-texte);
+}
+
+/* Décomposition visuelle du nom */
+.apropos__nom-decompose {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-top: 16px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.apropos__nom-partie {
+  background: var(--couleur-gris-clair);
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  padding: 6px 12px;
+  font-size: 0.82rem;
+  color: var(--couleur-texte-clair);
+  letter-spacing: 0.3px;
+}
+
+.apropos__nom-partie strong {
+  color: var(--couleur-accent);
+  font-weight: 900;
+  font-size: 0.88rem;
+}
+
+.apropos__nom-plus {
+  font-size: 0.9rem;
+  color: var(--couleur-gris-moyen);
+  font-weight: 700;
+}
+
+.apropos__nom-fleche {
+  font-size: 1.1rem;
+  color: var(--couleur-accent);
+  font-weight: 900;
+  margin: 0 2px;
+}
+
+.apropos__nom-resultat {
+  background: var(--couleur-primaire);
+  color: var(--couleur-blanc);
+  border-radius: 4px;
+  padding: 6px 14px;
+  font-size: 0.88rem;
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* Contact rapide */
+.apropos__contact {
+  margin-top: 36px;
+  padding-top: 28px;
+  border-top: 2px solid var(--couleur-accent);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.apropos__contact-personne {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.apropos__contact-avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--couleur-accent);
+  color: white;
+  font-weight: 900;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.apropos__contact-personne strong {
+  display: block;
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--couleur-primaire);
+}
+
+.apropos__contact-personne span {
+  font-size: 0.8rem;
+  color: var(--couleur-texte-clair);
+}
+
+.apropos__contact-coords {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.apropos__lien {
+  font-size: 0.9rem;
+  color: var(--couleur-texte);
+  font-weight: 600;
+  transition: var(--transition);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.apropos__lien:hover {
+  color: var(--couleur-accent);
+}
+
+/* Colonne valeurs */
+.apropos__valeurs-titre {
+  font-size: 1rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--couleur-primaire);
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+  border-bottom: 3px solid var(--couleur-accent);
+}
+
+.apropos__valeurs-liste {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 32px;
+}
+
+.valeur-item {
+  display: flex;
+  gap: 16px;
+  padding: 18px 16px;
+  border-radius: var(--rayon);
+  transition: var(--transition);
+}
+
+.valeur-item:hover {
+  background: rgba(232, 130, 12, 0.06);
+}
+
+.valeur-item__num {
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: rgba(232, 130, 12, 0.25);
+  line-height: 1;
+  flex-shrink: 0;
+  width: 32px;
+}
+
+.valeur-item__titre {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: var(--couleur-primaire);
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  margin-bottom: 6px;
+}
+
+.valeur-item__texte {
+  font-size: 0.83rem;
+  color: var(--couleur-texte-clair);
+  line-height: 1.6;
+}
+
+/* Notre approche */
+.apropos__approche {
+  margin-bottom: 28px;
+  padding: 20px;
+  background: rgba(232, 130, 12, 0.05);
+  border-left: 3px solid var(--couleur-accent);
+  border-radius: 0 var(--rayon) var(--rayon) 0;
+}
+
+.apropos__approche-titre {
+  font-size: 0.85rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--couleur-primaire);
+  margin-bottom: 12px;
+}
+
+.apropos__approche-liste {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.apropos__approche-liste li {
+  font-size: 0.85rem;
+  color: var(--couleur-texte-clair);
+  padding-left: 16px;
+  position: relative;
+}
+
+.apropos__approche-liste li::before {
+  content: "✓";
+  color: var(--couleur-accent);
+  font-weight: 800;
+  position: absolute;
+  left: 0;
+}
+
+/* Zones */
+.apropos__zones h4 {
+  font-size: 0.85rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--couleur-primaire);
+  margin-bottom: 14px;
+}
+
+.apropos__zones-liste {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.zone-badge {
+  background: var(--couleur-primaire);
+  color: var(--couleur-blanc);
+  padding: 6px 14px;
+  border-radius: 100px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .apropos__contenu {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}

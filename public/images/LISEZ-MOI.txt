@@ -1,0 +1,22 @@
+============================================================
+DOSSIER IMAGES — Simtrex inc
+============================================================
+
+COMMENT AJOUTER VOS PHOTOS :
+
+1. Copiez vos photos de chantier dans ce dossier (/public/images/)
+
+2. Pour la photo de fond du héro (page d'accueil) :
+   → Nommez votre fichier : hero-bg.jpg
+   → Taille recommandée : 1920x1080 pixels minimum
+
+3. Pour les photos de réalisations :
+   → Nommez vos fichiers : projet1.jpg, projet2.jpg, etc.
+   → Puis modifiez src/data/content.js :
+     image: "/images/projet1.jpg"   ← remplacez "null" par ce chemin
+
+FORMATS ACCEPTÉS : .jpg, .jpeg, .png, .webp
+TAILLE RECOMMANDÉE : max 500 Ko par image (pour la vitesse du site)
+
+Pour compresser vos images gratuitement : https://squoosh.app
+============================================================

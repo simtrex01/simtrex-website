@@ -1,0 +1,214 @@
+.services__grille {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-bottom: 56px;
+}
+
+.service-carte {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--rayon);
+  padding: 28px 22px 20px;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Photo en haut de la carte service */
+.service-carte__photo {
+  margin: -28px -22px 20px;
+  overflow: hidden;
+  background: #111;
+  aspect-ratio: 4 / 3;
+}
+
+.service-carte__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center center;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.service-carte:hover .service-carte__photo img {
+  transform: scale(1.03);
+}
+
+/* Barre accent en bas */
+.service-carte::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--couleur-accent);
+  transform: scaleX(0);
+  transition: transform 0.25s ease;
+}
+
+.service-carte:hover,
+.service-carte.actif {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(232, 130, 12, 0.35);
+  transform: translateY(-2px);
+}
+
+.service-carte:hover::before,
+.service-carte.actif::before {
+  transform: scaleX(1);
+}
+
+/* Carte avec section détaillée — léger indicateur visuel */
+.service-carte--avec-detail {
+  border-color: rgba(232, 130, 12, 0.2);
+}
+
+.service-carte__entete {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+
+.service-carte__icone {
+  font-size: 2rem;
+}
+
+.service-carte__numero {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: rgba(232, 130, 12, 0.5);
+  letter-spacing: 2px;
+}
+
+.service-carte__titre {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--couleur-blanc);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 12px;
+}
+
+.service-carte__desc {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.6;
+  margin-bottom: 16px;
+  flex: 1; /* pousse le footer vers le bas */
+}
+
+.service-carte__details {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 14px;
+  margin-bottom: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.service-carte__details li {
+  display: flex;
+  gap: 8px;
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.service-carte__puce {
+  color: var(--couleur-accent);
+  flex-shrink: 0;
+}
+
+/* Zone boutons en bas */
+.service-carte__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Bouton accordéon Détails */
+.service-carte__toggle {
+  font-size: 0.72rem;
+  color: var(--couleur-accent);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  font-family: var(--police-titre);
+  transition: var(--transition);
+}
+
+.service-carte__toggle:hover {
+  color: var(--couleur-accent-hover);
+}
+
+/* Bouton "Voir ce service" */
+.service-carte__voir {
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: var(--transition);
+  font-family: var(--police-titre);
+  white-space: nowrap;
+  background: var(--couleur-accent);
+  color: var(--couleur-blanc);
+  border: none;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+}
+
+.service-carte__voir:hover {
+  background: var(--couleur-accent-hover);
+  transform: translateX(2px);
+}
+
+/* Variante contact (services sans section dédiée) */
+.service-carte__voir--contact {
+  background: transparent;
+  color: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.service-carte__voir--contact:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.85);
+  transform: none;
+}
+
+.services__cta {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.services__cta p {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.05rem;
+}
+
+@media (max-width: 1100px) {
+  .services__grille { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+  .services__grille { grid-template-columns: 1fr; }
+}

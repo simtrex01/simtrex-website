@@ -1,0 +1,98 @@
+.equipements__grille {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.equip-carte {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--rayon);
+  padding: 28px 22px;
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+  transition: var(--transition);
+}
+
+.equip-carte:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(232, 130, 12, 0.35);
+  transform: translateX(4px);
+}
+
+.equip-carte__icone {
+  font-size: 2rem;
+  flex-shrink: 0;
+  width: 52px;
+  height: 52px;
+  background: rgba(232, 130, 12, 0.12);
+  border-radius: var(--rayon);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(232, 130, 12, 0.2);
+}
+
+.equip-carte__corps {
+  flex: 1;
+}
+
+.equip-carte__nom {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--couleur-blanc);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+}
+
+.equip-carte__desc {
+  font-size: 0.83rem;
+  color: rgba(255, 255, 255, 0.55);
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+.equip-carte__spec {
+  font-size: 0.78rem;
+  color: var(--couleur-accent);
+  font-weight: 600;
+}
+
+.equip-carte__spec-label {
+  color: rgba(255, 255, 255, 0.4);
+  margin-right: 4px;
+}
+
+/* Note */
+.equipements__note {
+  background: rgba(232, 130, 12, 0.08);
+  border: 1px solid rgba(232, 130, 12, 0.2);
+  border-radius: var(--rayon);
+  padding: 20px 24px;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.equipements__note-icone {
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+
+.equipements__note p {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.65);
+  line-height: 1.6;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .equipements__grille { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+  .equipements__grille { grid-template-columns: 1fr; }
+}

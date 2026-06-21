@@ -1,0 +1,10 @@
+# Configuration Netlify — prêt pour déploiement
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# Gestion des routes (SPA)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

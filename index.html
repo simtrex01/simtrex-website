@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- SEO — modifiez ces métadonnées -->
+    <title>Simtrex inc — Excavation, Transport & Génie Civil | La Malbaie, Charlevoix</title>
+    <meta name="description" content="Simtrex inc, entrepreneur en excavation, transport et génie civil à La Malbaie, Charlevoix. Fondée en 2012, incorporée en 2014. Travaux municipaux, égout, aqueduc, terrassement, drainage, déneigement, transport par fardier. Licence RBQ 5717-1738-01. Appelez Michael Simard au 418-617-9467." />
+    <meta name="keywords" content="excavation La Malbaie, excavation Charlevoix, génie civil Charlevoix, terrassement Charlevoix, travaux municipaux La Malbaie, transport matériaux Charlevoix, fardier Charlevoix, drainage La Malbaie, déneigement Charlevoix, égout aqueduc La Malbaie, Simtrex, entrepreneur RBQ Charlevoix" />
+    <meta name="geo.region" content="CA-QC" />
+    <meta name="geo.placename" content="La Malbaie, Charlevoix, Québec" />
+
+    <!-- Open Graph (réseaux sociaux) -->
+    <meta property="og:title" content="Simtrex inc — Excavation, Transport & Génie Civil | Charlevoix" />
+    <meta property="og:description" content="Entrepreneur en excavation, transport et génie civil à La Malbaie, Charlevoix. Fondée en 2012 · RBQ 5717-1738-01 · 418-617-9467." />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="fr_CA" />
+
+    <!-- Préchargement de la police système (aucun chargement réseau requis) -->
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+
+    <!--
+      FORMULAIRE CACHÉ — requis pour Netlify Forms avec React (SPA).
+      Netlify scanne le HTML statique au build ; sans ceci le formulaire
+      ne serait pas détecté. Ne pas supprimer.
+      Les champs doivent correspondre exactement à ceux de Contact.jsx.
+    -->
+    <form name="soumission-simtrex" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="text"  name="nom" />
+      <input type="tel"   name="telephone" />
+      <input type="email" name="courriel" />
+      <select name="typeProjet"><option value=""></option></select>
+      <input type="text"  name="ville" />
+      <textarea           name="description"></textarea>
+      <!-- Champ anti-spam invisible -->
+      <input type="text"  name="bot-field" />
+    </form>
+  </body>
+</html>

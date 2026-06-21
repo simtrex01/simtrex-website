@@ -1,0 +1,56 @@
+.btn-facebook {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 22px;
+  border-radius: var(--rayon);
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: var(--transition);
+  border: 2px solid transparent;
+  cursor: pointer;
+  font-family: var(--police-titre);
+  letter-spacing: 0.3px;
+}
+
+/* Variante pleine — bleu Facebook */
+.btn-facebook--primaire {
+  background: #1877f2;
+  color: #ffffff;
+  border-color: #1877f2;
+}
+
+.btn-facebook--primaire:hover {
+  background: #1464d0;
+  border-color: #1464d0;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(24, 119, 242, 0.4);
+}
+
+/* Variante contour — sur fond clair */
+.btn-facebook--outline {
+  background: transparent;
+  color: #1877f2;
+  border-color: #1877f2;
+}
+
+.btn-facebook--outline:hover {
+  background: #1877f2;
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+/* Variante sombre — sur fond noir/sombre */
+.btn-facebook--sombre {
+  background: rgba(24, 119, 242, 0.15);
+  color: #ffffff;
+  border-color: rgba(24, 119, 242, 0.5);
+}
+
+.btn-facebook--sombre:hover {
+  background: #1877f2;
+  border-color: #1877f2;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(24, 119, 242, 0.35);
+}

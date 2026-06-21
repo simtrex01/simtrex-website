@@ -1,0 +1,362 @@
+.contact__contenu {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 48px;
+  align-items: start;
+}
+
+/* Formulaire */
+.contact__formulaire-wrapper {
+  background: var(--couleur-blanc);
+  border-radius: var(--rayon);
+  padding: 40px;
+  box-shadow: var(--ombre);
+}
+
+.contact__formulaire {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.champs-groupe {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.champ {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.champ label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--couleur-primaire);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.champ input,
+.champ select,
+.champ textarea {
+  padding: 12px 14px;
+  border: 2px solid #e5e5e5;
+  border-radius: var(--rayon);
+  font-size: 0.9rem;
+  font-family: var(--police-titre);
+  color: var(--couleur-texte);
+  transition: var(--transition);
+  background: var(--couleur-blanc);
+  width: 100%;
+}
+
+.champ input:focus,
+.champ select:focus,
+.champ textarea:focus {
+  outline: none;
+  border-color: var(--couleur-accent);
+  box-shadow: 0 0 0 3px rgba(232, 130, 12, 0.12);
+}
+
+.champ.erreur input,
+.champ.erreur select,
+.champ.erreur textarea {
+  border-color: #dc2626;
+}
+
+.champ__erreur {
+  font-size: 0.75rem;
+  color: #dc2626;
+  font-weight: 600;
+}
+
+.champ textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.contact__btn-envoi {
+  width: 100%;
+  justify-content: center;
+  padding: 16px;
+  font-size: 1rem;
+  gap: 10px;
+  transition: var(--transition);
+}
+
+/* État "en cours d'envoi" */
+.contact__btn-envoi.en-cours {
+  opacity: 0.75;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.contact__btn-envoi:disabled {
+  pointer-events: none;
+}
+
+/* Spinner d'animation */
+.contact__spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: tourner 0.7s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes tourner {
+  to { transform: rotate(360deg); }
+}
+
+/* Bloc d'erreur réseau */
+.contact__erreur-reseau {
+  background: rgba(220, 38, 38, 0.06);
+  border: 1px solid rgba(220, 38, 38, 0.3);
+  border-radius: var(--rayon);
+  padding: 14px 16px;
+  font-size: 0.85rem;
+  color: #b91c1c;
+  line-height: 1.6;
+}
+
+.contact__erreur-reseau a {
+  color: #b91c1c;
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+/* Message succès */
+.contact__succes {
+  text-align: center;
+  padding: 48px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.contact__succes-icone {
+  font-size: 3rem;
+}
+
+.contact__succes-coords {
+  font-size: 0.85rem;
+  color: var(--couleur-texte-clair);
+}
+
+.contact__succes-coords a {
+  color: var(--couleur-accent);
+  font-weight: 700;
+}
+
+.contact__succes h3 {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--couleur-primaire);
+}
+
+.contact__succes p {
+  color: var(--couleur-texte-clair);
+  max-width: 360px;
+}
+
+/* Colonne infos */
+.contact__infos {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.contact__infos-carte {
+  background: var(--couleur-primaire);
+  border-radius: var(--rayon);
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.contact__infos-carte h3 {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--couleur-blanc);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.contact__info-item {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+.contact__info-icone {
+  font-size: 1.1rem;
+  width: 28px;
+  flex-shrink: 0;
+}
+
+.contact__info-item strong {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--couleur-blanc);
+  margin-bottom: 3px;
+}
+
+.contact__info-item span {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.contact__lien:hover {
+  text-decoration: underline;
+}
+
+/* Urgence */
+.contact__urgence {
+  background: rgba(220, 38, 38, 0.06);
+  border: 1px solid rgba(220, 38, 38, 0.2);
+  border-radius: var(--rayon);
+  padding: 20px;
+}
+
+.contact__urgence-entete {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.contact__urgence-entete strong {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: var(--couleur-primaire);
+  text-transform: uppercase;
+}
+
+.contact__urgence p {
+  font-size: 0.83rem;
+  color: var(--couleur-texte-clair);
+  line-height: 1.6;
+}
+
+.contact__urgence a {
+  color: var(--couleur-accent);
+  font-weight: 700;
+}
+
+/* Bloc RBQ dans la carte coordonnées */
+.contact__rbq {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(232, 130, 12, 0.1);
+  border: 1px solid rgba(232, 130, 12, 0.3);
+  border-radius: 4px;
+  padding: 10px 14px;
+  margin-top: 4px;
+}
+
+.contact__rbq-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.contact__rbq-numero {
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: var(--couleur-accent);
+  letter-spacing: 0.5px;
+}
+
+/* Mention RBQ sous le formulaire */
+.contact__mention-rbq {
+  font-size: 0.75rem;
+  color: var(--couleur-texte-clair);
+  text-align: center;
+  margin-top: -8px;
+}
+
+.contact__mention-rbq strong {
+  color: var(--couleur-texte);
+}
+
+/* Lien adresse multi-ligne */
+.contact__lien {
+  color: var(--couleur-accent);
+  font-weight: 700;
+  font-size: 0.9rem;
+  transition: var(--transition);
+  line-height: 1.6;
+}
+
+/* Secteurs */
+.contact__secteurs {
+  background: var(--couleur-blanc);
+  border-radius: var(--rayon);
+  padding: 20px;
+  box-shadow: var(--ombre);
+}
+
+.contact__secteurs h4 {
+  font-size: 0.82rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--couleur-primaire);
+  margin-bottom: 8px;
+}
+
+.contact__secteurs p {
+  font-size: 0.83rem;
+  color: var(--couleur-texte-clair);
+  line-height: 1.6;
+}
+
+/* Facebook dans la colonne contact */
+.contact__facebook {
+  background: rgba(24, 119, 242, 0.06);
+  border: 1px solid rgba(24, 119, 242, 0.2);
+  border-radius: var(--rayon);
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.contact__facebook p {
+  font-size: 0.82rem;
+  color: var(--couleur-texte-clair);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.contact__facebook .btn-facebook {
+  width: 100%;
+  justify-content: center;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .contact__contenu {
+    grid-template-columns: 1fr;
+  }
+  .champs-groupe {
+    grid-template-columns: 1fr;
+  }
+  .contact__formulaire-wrapper {
+    padding: 28px 24px;
+  }
+}
