@@ -1,46 +1,62 @@
 // ============================================================
 // COMPOSANT CONTACT — Formulaire de soumission
-// Envoi via Netlify Forms (gratuit, sans backend).
-// Les soumissions arrivent dans le tableau de bord Netlify
-// et par courriel à l'adresse configurée dans les paramètres
-// de notification du formulaire "soumission-simtrex".
+// Envoi via FormSubmit (gratuit, sans backend).
+// - La demande est envoyée par courriel à simtrex01@hotmail.com
+// - Un accusé de réception automatique est envoyé au client (_autoresponse)
+// - Après l'envoi, FormSubmit redirige vers ?envoye=1 (message de confirmation)
+// Note : la 1re soumission nécessite d'activer le formulaire via le
+// courriel de confirmation envoyé par FormSubmit.
 // ============================================================
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { companyInfo, typesProjet } from "../data/content";
 import BoutonFacebook from "./BoutonFacebook";
 import "./Contact.css";
 
 const { adresse } = companyInfo;
 
+// Message d'accusé de réception envoyé automatiquement au client
+const messageAutoReponse =
+  "Bonjour,\n\n" +
+  "Merci d'avoir contacté Construction Simtrex inc. Nous avons bien reçu votre demande de soumission et nous vous contacterons dans les plus brefs délais pour discuter de votre projet.\n\n" +
+  "Pour toute question ou urgence, vous pouvez nous joindre directement au 418-617-9467.\n\n" +
+  "Au plaisir de travailler avec vous,\n" +
+  "Michael Simard\n" +
+  "Construction Simtrex inc\n" +
+  "https://simtrex.ca";
+
 const etatInitial = {
   nom: "",
   telephone: "",
-  courriel: "",
+  email: "",
   typeProjet: "",
   description: "",
   ville: "",
 };
 
-// Encode les données en format URL (requis par Netlify Forms)
-function encodeFormData(data) {
-  return Object.keys(data)
-    .map((k) => encodeURIComponent(k) + "=" + encodeURIComponent(data[k]))
-    .join("&");
-}
-
 export default function Contact() {
   const [champs, setChamps] = useState(etatInitial);
-  const [envoyé, setEnvoyé] = useState(false);
+  // Affiche la confirmation quand on revient de FormSubmit (?envoye=1)
+  const [envoyé, setEnvoyé] = useState(
+    () => new URLSearchParams(window.location.search).get("envoye") === "1"
+  );
   const [envoi, setEnvoi] = useState("idle"); // "idle" | "en-cours" | "erreur"
   const [erreurs, setErreurs] = useState({});
+
+  // Au retour de FormSubmit, on ramène l'utilisateur à la section contact
+  useEffect(() => {
+    if (envoyé) {
+      document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const valider = () => {
     const e = {};
     if (!champs.nom.trim())        e.nom        = "Le nom est requis";
     if (!champs.telephone.trim())  e.telephone  = "Le téléphone est requis";
-    if (!champs.courriel.trim())   e.courriel   = "Le courriel est requis";
-    else if (!/\S+@\S+\.\S+/.test(champs.courriel)) e.courriel = "Courriel invalide";
+    if (!champs.email.trim())      e.email      = "Le courriel est requis";
+    else if (!/\S+@\S+\.\S+/.test(champs.email)) e.email = "Courriel invalide";
     if (!champs.typeProjet)        e.typeProjet = "Veuillez sélectionner un type de projet";
     if (!champs.description.trim()) e.description = "La description est requise";
     if (!champs.ville.trim())      e.ville      = "La ville / secteur est requis";
@@ -53,53 +69,27 @@ export default function Contact() {
     if (erreurs[name]) setErreurs((prev) => ({ ...prev, [name]: undefined }));
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    // Validation côté client
+  const handleSubmit = (e) => {
+    // Validation côté client AVANT l'envoi natif à FormSubmit
     const erreursValidation = valider();
     if (Object.keys(erreursValidation).length > 0) {
+      e.preventDefault(); // on bloque l'envoi tant qu'il y a des erreurs
       setErreurs(erreursValidation);
-      // Scroll vers la première erreur
       const premierChamp = document.querySelector(".champ.erreur");
       if (premierChamp) premierChamp.scrollIntoView({ behavior: "smooth", block: "center" });
       return;
     }
-
+    // Aucune erreur : on laisse le navigateur envoyer le formulaire à FormSubmit.
+    // FormSubmit notifie Simtrex par courriel, envoie l'accusé de réception au
+    // client, puis redirige vers ?envoye=1 (message de confirmation).
     setEnvoi("en-cours");
-
-    try {
-      // Envoi à Netlify Forms via fetch
-      // Le nom "soumission-simtrex" doit correspondre exactement
-      // au name= du formulaire caché dans index.html
-      const reponse = await fetch("/", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: encodeFormData({
-          "form-name": "soumission-simtrex",
-          "bot-field": "",   // champ anti-spam — doit rester vide
-          ...champs,
-        }),
-      });
-
-      if (reponse.ok) {
-        setEnvoyé(true);
-        setChamps(etatInitial);
-        setEnvoi("idle");
-      } else {
-        // Réponse HTTP non-OK (ex : 400, 500)
-        setEnvoi("erreur");
-      }
-    } catch {
-      // Erreur réseau (pas de connexion, timeout, etc.)
-      setEnvoi("erreur");
-    }
   };
 
   const recommencer = () => {
     setEnvoyé(false);
     setEnvoi("idle");
     setErreurs({});
+    window.history.replaceState({}, "", "/#contact");
   };
 
   return (
@@ -140,16 +130,18 @@ export default function Contact() {
               /* ── Formulaire ── */
               <form
                 className="contact__formulaire"
+                action="https://formsubmit.co/simtrex01@hotmail.com"
+                method="POST"
                 onSubmit={handleSubmit}
                 noValidate
               >
-                {/* Champ anti-spam invisible — NE PAS supprimer */}
-                <div style={{ display: "none" }} aria-hidden="true">
-                  <label>
-                    Ne pas remplir si vous êtes humain
-                    <input name="bot-field" tabIndex="-1" autoComplete="off" />
-                  </label>
-                </div>
+                {/* ── Réglages FormSubmit (champs cachés) ── */}
+                <input type="hidden" name="_subject" value="Nouvelle demande de soumission — simtrex.ca" />
+                <input type="hidden" name="_template" value="table" />
+                <input type="hidden" name="_autoresponse" value={messageAutoReponse} />
+                <input type="hidden" name="_next" value="https://simtrex.ca/?envoye=1" />
+                {/* Piège anti-spam (doit rester vide) */}
+                <input type="text" name="_honey" style={{ display: "none" }} tabIndex="-1" autoComplete="off" />
 
                 <div className="champs-groupe">
                   {/* Nom */}
@@ -184,18 +176,18 @@ export default function Contact() {
                 </div>
 
                 {/* Courriel */}
-                <div className={`champ ${erreurs.courriel ? "erreur" : ""}`}>
-                  <label htmlFor="courriel">Courriel *</label>
+                <div className={`champ ${erreurs.email ? "erreur" : ""}`}>
+                  <label htmlFor="email">Courriel *</label>
                   <input
                     type="email"
-                    id="courriel"
-                    name="courriel"
-                    value={champs.courriel}
+                    id="email"
+                    name="email"
+                    value={champs.email}
                     onChange={handleChange}
                     placeholder="votre@courriel.com"
                     autoComplete="email"
                   />
-                  {erreurs.courriel && <span className="champ__erreur" role="alert">{erreurs.courriel}</span>}
+                  {erreurs.email && <span className="champ__erreur" role="alert">{erreurs.email}</span>}
                 </div>
 
                 {/* Type de projet */}
