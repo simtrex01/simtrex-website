@@ -73,6 +73,45 @@
   font-weight: 600;
 }
 
+/* Mention « optionnel » à côté d'un label */
+.champ__optionnel {
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--couleur-texte-clair);
+}
+
+/* Texte d'aide sous un champ */
+.champ__aide {
+  font-size: 0.75rem;
+  color: var(--couleur-texte-clair);
+}
+
+/* Champ de sélection de fichier */
+.champ__fichier {
+  padding: 10px 14px !important;
+  background: #fafafa !important;
+  cursor: pointer;
+  font-size: 0.85rem !important;
+}
+
+.champ__fichier::file-selector-button {
+  margin-right: 12px;
+  padding: 7px 14px;
+  border: none;
+  border-radius: 6px;
+  background: var(--couleur-primaire);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.champ__fichier::file-selector-button:hover {
+  background: var(--couleur-accent);
+}
+
 .champ textarea {
   resize: vertical;
   min-height: 120px;

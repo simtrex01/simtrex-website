@@ -63,10 +63,12 @@ export default function Contact() {
     return e;
   };
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setChamps((prev) => ({ ...prev, [name]: value }));
-    if (erreurs[name]) setErreurs((prev) => ({ ...prev, [name]: undefined }));
+  // Curried : la clé d'état interne (propre) est indépendante du "name"
+  // envoyé à FormSubmit (qui sert d'étiquette lisible dans le courriel).
+  const handleChange = (cle) => (e) => {
+    const { value } = e.target;
+    setChamps((prev) => ({ ...prev, [cle]: value }));
+    if (erreurs[cle]) setErreurs((prev) => ({ ...prev, [cle]: undefined }));
   };
 
   const handleSubmit = (e) => {
@@ -132,6 +134,7 @@ export default function Contact() {
                 className="contact__formulaire"
                 action="https://formsubmit.co/simtrex01@hotmail.com"
                 method="POST"
+                encType="multipart/form-data"
                 onSubmit={handleSubmit}
                 noValidate
               >
@@ -150,9 +153,9 @@ export default function Contact() {
                     <input
                       type="text"
                       id="nom"
-                      name="nom"
+                      name="Nom complet"
                       value={champs.nom}
-                      onChange={handleChange}
+                      onChange={handleChange("nom")}
                       placeholder="Jean Tremblay"
                       autoComplete="name"
                     />
@@ -165,9 +168,9 @@ export default function Contact() {
                     <input
                       type="tel"
                       id="telephone"
-                      name="telephone"
+                      name="Téléphone"
                       value={champs.telephone}
-                      onChange={handleChange}
+                      onChange={handleChange("telephone")}
                       placeholder="418-000-0000"
                       autoComplete="tel"
                     />
@@ -183,7 +186,7 @@ export default function Contact() {
                     id="email"
                     name="email"
                     value={champs.email}
-                    onChange={handleChange}
+                    onChange={handleChange("email")}
                     placeholder="votre@courriel.com"
                     autoComplete="email"
                   />
@@ -195,9 +198,9 @@ export default function Contact() {
                   <label htmlFor="typeProjet">Type de projet *</label>
                   <select
                     id="typeProjet"
-                    name="typeProjet"
+                    name="Type de projet"
                     value={champs.typeProjet}
-                    onChange={handleChange}
+                    onChange={handleChange("typeProjet")}
                   >
                     <option value="">— Sélectionnez un type —</option>
                     {typesProjet.map((t) => (
@@ -213,9 +216,9 @@ export default function Contact() {
                   <input
                     type="text"
                     id="ville"
-                    name="ville"
+                    name="Ville / secteur"
                     value={champs.ville}
-                    onChange={handleChange}
+                    onChange={handleChange("ville")}
                     placeholder="Ex : La Malbaie, Québec, Charlevoix..."
                   />
                   {erreurs.ville && <span className="champ__erreur" role="alert">{erreurs.ville}</span>}
@@ -226,13 +229,28 @@ export default function Contact() {
                   <label htmlFor="description">Description du projet *</label>
                   <textarea
                     id="description"
-                    name="description"
+                    name="Description"
                     value={champs.description}
-                    onChange={handleChange}
+                    onChange={handleChange("description")}
                     rows={5}
                     placeholder="Décrivez brièvement votre projet : dimensions, contraintes, délais souhaités..."
                   />
                   {erreurs.description && <span className="champ__erreur" role="alert">{erreurs.description}</span>}
+                </div>
+
+                {/* Pièce jointe (plan, photo…) — optionnel */}
+                <div className="champ">
+                  <label htmlFor="attachment">Plan ou document <span className="champ__optionnel">(optionnel)</span></label>
+                  <input
+                    type="file"
+                    id="attachment"
+                    name="attachment"
+                    className="champ__fichier"
+                    accept=".pdf,.jpg,.jpeg,.png,.heic,.heif,.webp,.doc,.docx"
+                  />
+                  <span className="champ__aide">
+                    Vous pouvez joindre votre plan ou une photo (PDF, JPG, PNG… — max. ~10 Mo).
+                  </span>
                 </div>
 
                 {/* Message d'erreur réseau */}
